@@ -8,3 +8,5 @@ CART_HOST: cart.app-dev.projoy.store
 SHIPPING_HOST: shipping.app-dev.projoy.store
 PAYMENT_HOST: payment.app-dev.projoy.store
 DISPATCH_HOST: dispatch.app-dev.projoy.store
+NEXUS_URL: http://3.238.69.179:8081/repository/catalogue
+group_id: com/roboshop

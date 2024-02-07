@@ -12,13 +12,25 @@
     path: /app
     state: directory
 
-- name: "Download {{component}} Application"
+# - name: "Download {{component}} Application"
+#   ansible.builtin.get_url:
+#     url: "https://roboshop-builds.s3.amazonaws.com/{{component}}.zip"
+#     dest: /tmp
+
+# - name: "Extracting {{component}} Application"
+#   ansible.builtin.unarchive: 
+#     src: "/tmp/{{component}}.zip"
+#     dest: /app
+#     remote_src: yes #if file is already in remote source
+
+# Following is for jenkins 
+- name: "Download Artifact From Nexus"
   ansible.builtin.get_url:
-    url: "https://roboshop-builds.s3.amazonaws.com/{{component}}.zip"
+    url: "{{NEXUS_URL}}/{{component}}/{{group_id}}/{{component}}/{{app_version}}/{{component}}-{{app_version}}.zip" 
     dest: /tmp
 
 - name: "Extracting {{component}} Application"
   ansible.builtin.unarchive: 
-    src: "/tmp/{{component}}.zip"
+    src: "/tmp/{{component}}-{{app_version}}.zip"
     dest: /app
-    remote_src: yes #if file is already in remote source
+    remote_src: yes 
